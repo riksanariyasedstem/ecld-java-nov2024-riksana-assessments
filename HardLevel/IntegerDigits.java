@@ -2,26 +2,30 @@ import java.util.Scanner;
 
 public class IntegerDigits {
     public static void main(String[] args) {
-        Scanner sc=new Scanner(System.in);
-       // System.out.println("enter the size");
-       // int size=sc.nextInt();
-        int size=100;
-        int[]arr=new int[size];
-        System.out.println("enter the numbers without space");
-        for(int i=0;i<size-1;i++){
-            arr[i]=sc.nextInt();
-        }
-        int result=returncount(size,arr);
-        System.out.println("is the number of digits in your enterd value"+result);
+        Scanner sc = new Scanner(System.in);
+        int size = 100;
+        int[] arr = new int[size];
+        System.out.println("Enter the numbers without spaces:");
 
+        // Reading a number as a single integer, not individual digits
+        String number = sc.nextLine();  // Read input as a single string
+        
+        // Convert the number's characters into array elements
+        for (int i = 0; i < number.length(); i++) {
+            arr[i] = Character.getNumericValue(number.charAt(i));
+        }
+
+        int result = returncount(number.length(), arr);
+        System.out.println("The number of digits in your entered value: " + result);
     }
-    public static int returncount(int size,int[]arr){
-      //  arr=new int[size];
-        int count=0;
-        for(int i=0;i<size-1;i++){
-            //int count=0;
-             count++ ;
+
+    public static int returncount(int size, int[] arr) {
+        int count = 0;
+        for (int i = 0; i < size; i++) { // Loop up to actual input length
+            count++;
         }
         return count;
     }
 }
+
+
