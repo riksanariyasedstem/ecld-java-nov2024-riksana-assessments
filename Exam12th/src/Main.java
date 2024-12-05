@@ -1,38 +1,30 @@
+import java.time.LocalDate;
 
-import java.time.LocalDateTime;
-import java.util.Arrays;
-
-        public class Main {
-            public static void main(String[] args) {
-
-                OrderItem item1 = new OrderItem("P001", 2, 25.0);
-                OrderItem item2 = new OrderItem("P002", 1, 50.0);
-                OrderItem item3 = new OrderItem("P003", 3, 15.0);
+public class Main {
+    public static void main(String[] args) {
+        Library library = new Library();
 
 
-                RegularOrder regularOrder = new RegularOrder("R001", "John Doe", LocalDateTime.now(), Arrays.asList(item1, item2));
-                PriorityOrder priorityOrder = new PriorityOrder("P001", "Jane Doe", LocalDateTime.now(), Arrays.asList(item3), true);
+        Book book1 = new Book("B001", "The Great Gatsby", "F. Scott Fitzgerald", "9780743273565");
+        Book book2 = new Book("B002", "1984", "George Orwell", "9780451524935");
+        Magazine magazine1 = new Magazine("M001", "National Geographic", LocalDate.of(2023, 10, 1), "National Geographic Society");
 
 
-                OrderProcessor orderProcessor = new OrderProcessor();
+        library.addItem(book1);
+        library.addItem(book2);
+        library.addItem(magazine1);
 
 
-                orderProcessor.processOrder(regularOrder);
-                orderProcessor.processOrder(priorityOrder);
+        System.out.println("Borrowing 'The Great Gatsby': " + library.borrowItem("B001"));
 
 
-                System.out.println("Total Revenue: " + orderProcessor.getTotalRevenue());
+        System.out.println("Trying to borrow 'The Great Gatsby' again: " + library.borrowItem("B001"));
 
 
-                System.out.println("Average Order Value: " + orderProcessor.getAverageOrderValue());
+        System.out.println("Returning 'The Great Gatsby': " + library.returnItem("B001"));
 
 
-                System.out.println("Top Customer: " + orderProcessor.getTopCustomer());
-
-
-                System.out.println("\nProcessing orders in :");
-                orderProcessor.processOrdersFIFO();
-
-
+        System.out.println("\nOverdue items (3 days late):");
+        library.getOverdueItems(3).forEach(System.out::println);
     }
 }
