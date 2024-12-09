@@ -21,7 +21,7 @@ A Training Repository that hosts exercises done and assesments conducted.
  - [Carrying the Digits](https://edabit.com/challenge/5snfPLPbvjAsZ5kjo) - [Solution](excercise/hard/CarryDigit.java)
  - [Coin Co-Operation](https://edabit.com/challenge/WmGeYLJbud69ezCew) - [Solution](excercise/hard/CoinCoperation.java)
  - [Consecutive Numbers](https://edabit.com/challenge/Md6usCHQ7Xsj2fQi3) - [Solution](excercise/hard/ConsequtiveNumbers.java)
- - [Harshad Number]([https://edabit.com/challenge/xLHemSaX8jAc6Tyz9](https://edabit.com/challenge/xLHemSaX8jAc6Tyz9)) - [Solution](excercise/hard/Harshad.java)
+ - [Harshad Number]([https://edabit.com/challenge/xLHemSaX8jAc6Tyz9] (https://edabit.com/challenge/xLHemSaX8jAc6Tyz9)) - [Solution](excercise/hard/Harshad.java)
  - [Count the Digits](https://edabit.com/challenge/aAMcXEH67BLzJfyZz) - [Solution](excercise/hard/Repeat.java)
  - [Reverse the Odd Length Words](https://edabit.com/challenge/p5kyThBZDR7oJhjR7) - [Solution](excercise/hard/OddReverse.java)
  - [RegEx: Validate PIN](https://edabit.com/challenge/sCP58J9vcexchgwo7) - [Solution](excercise/hard/PersonalIdNumber.java)
