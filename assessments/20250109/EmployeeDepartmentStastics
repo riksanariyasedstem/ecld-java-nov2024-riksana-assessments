@@ -1,0 +1,97 @@
+import java.util.*;
+import java.util.stream.*;
+
+public class Main {
+
+    static class Employee {
+        private String name;
+        private String department;
+        private double salary;
+        private List<String> skills;
+
+        public Employee(String name, String department, double salary, List<String> skills) {
+            this.name = name;
+            this.department = department;
+            this.salary = salary;
+            this.skills = skills;
+        }
+
+        public String getDepartment() {
+            return department;
+        }
+
+        public double getSalary() {
+            return salary;
+        }
+
+        public List<String> getSkills() {
+            return skills;
+        }
+    }
+
+    static class DepartmentStats {
+        private double averageSalary;
+        private long employeeCount;
+        private Set<String> uniqueSkills;
+
+        public DepartmentStats(double averageSalary, long employeeCount, Set<String> uniqueSkills) {
+            this.averageSalary = averageSalary;
+            this.employeeCount = employeeCount;
+            this.uniqueSkills = uniqueSkills;
+        }
+
+        @Override
+        public String toString() {
+            return "DepartmentStats{" +
+                    "averageSalary=" + averageSalary +
+                    ", employeeCount=" + employeeCount +
+                    ", uniqueSkills=" + uniqueSkills +
+                    '}';
+        }
+    }
+
+    public static Map<String, DepartmentStats> analyzeDepartments(List<Employee> employees) {
+
+        Map<String, List<Employee>> employeesByDepartment = employees.stream()
+                .collect(Collectors.groupingBy(e -> e.getDepartment()));
+
+
+        Map<String, DepartmentStats> result = new HashMap<>();
+
+        for (Map.Entry<String, List<Employee>> entry : employeesByDepartment.entrySet()) {
+            String department = entry.getKey();
+            List<Employee> deptEmployees = entry.getValue();
+
+
+            if (deptEmployees.size() > 2) {
+                double totalSalary = 0.0;
+                Set<String> skills = new HashSet<>();
+
+                for (Employee emp : deptEmployees) {
+                    totalSalary += emp.getSalary();
+                    skills.addAll(emp.getSkills());
+                }
+
+                double averageSalary = totalSalary / deptEmployees.size();
+                long employeeCount = deptEmployees.size();
+
+                result.put(department, new DepartmentStats(averageSalary, employeeCount, skills));
+            }
+        }
+
+        return result;
+    }
+
+    public static void main(String[] args) {
+        List<Employee> employees = Arrays.asList(
+                new Employee("John", "IT", 75000, Arrays.asList("Java", "SQL")),
+                new Employee("Alice", "IT", 82000, Arrays.asList("Python", "Java")),
+                new Employee("Bob", "HR", 65000, Arrays.asList("Communication")),
+                new Employee("Charlie", "IT", 78000, Arrays.asList("Java", "AWS"))
+        );
+
+        Map<String, DepartmentStats> departmentStats = analyzeDepartments(employees);
+        System.out.println(departmentStats);
+    }
+}
+
