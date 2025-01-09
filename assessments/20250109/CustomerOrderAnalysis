@@ -1,0 +1,57 @@
+import java.time.LocalDate;
+import java.util.*;
+
+public class CustomerOrderAnalysis {
+
+    
+    static class Order {
+        private String customerId;
+        private double amount;
+        private List<String> items;
+        private LocalDate orderDate;
+
+        public Order(String customerId, double amount, List<String> items, LocalDate orderDate) {
+            this.customerId = customerId;
+            this.amount = amount;
+            this.items = items;
+            this.orderDate = orderDate;
+        }
+
+        public double getAmount() {
+            return amount;
+        }
+
+        public String getCustomerId() {
+            return customerId;
+        }
+
+        public LocalDate getOrderDate() {
+            return orderDate;
+        }
+    }
+
+   
+    public static Map<String, Double> analyzeOrders(List<Order> orders) {
+        Map<String, Double> result = new HashMap<>();
+        for (Order element : orders) {
+            if (element.getOrderDate().getYear() == 2024 && element.getAmount() > 100) {
+                result.put(element.getCustomerId(),
+                        result.getOrDefault(element.getCustomerId(), 0.0) + element.getAmount());
+            }
+        }
+        return result;
+    }
+
+  
+    public static void main(String[] args) {
+        List<Order> orders = Arrays.asList(
+                new Order("C1", 150.0, Arrays.asList("Item1", "Item2"), LocalDate.of(2024, 1, 15)),
+                new Order("C1", 50.0, Arrays.asList("Item3"), LocalDate.of(2024, 1, 20)),
+                new Order("C2", 200.0, Arrays.asList("Item1", "Item4"), LocalDate.of(2024, 1, 15)),
+                new Order("C1", 120.0, Arrays.asList("Item2", "Item5"), LocalDate.of(2023, 12, 15))
+        );
+
+        Map<String, Double> result = analyzeOrders(orders);
+        System.out.println(result);
+    }
+}
